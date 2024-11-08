@@ -1,0 +1,106 @@
+ASSIGNMENT 7
+
+db.products.insertMany([{ product_name: "Burger", stock: "250", price: "20" },
+                        { product_name: "pizza", stock: "50", price: "25" } , 
+                        { product_name: "Garlic bread", stock: "300", price: "22" } , 
+                        { product_name: "", stock: "265", price: "30" }]);
+
+
+db.students.insertMany([
+    { name: "Eve", enrolled: true, attendence: 85,grade: 75, age: 21},
+    { name: "Frank", enrolled: false, grade: 87 , age: 18},
+    { name: "Grace", enrolled: true, grade: 95 , age:17 },
+    { name: "Henry", enrolled: false, grade: 83, age:19 }
+]);
+
+
+
+
+db.products.find({
+    price: { $gte: 20, $lte: 100 },
+    stock: { $gt: 0 }
+});
+
+
+
+db.students.find({
+    $or: [
+        { grade: { $gt: 85 } },
+        { attendance: { $gt: 90 } },
+        { age: { $lt: 18 } }
+    ]
+});
+
+
+
+db.jobs.find({
+    salary: { $gt: 50000 },
+    location: { $in: ["Australia", "Sidney"] }
+});
+
+
+
+
+
+db.inventory.find({
+    category: "electronics",
+    discount: { $gte: 10 },
+    stock: { $gt: 0 }
+});
+
+
+
+
+db.orders.find({
+    status: "pending",
+    $or: [
+        { customer_type: "VIP" },
+        { amount: { $gt: 500 } }
+    ]
+});
+
+
+
+
+db.students.find({
+    $or: [
+        { $and: [{ age: { $gt: 18 } }, { grade: { $lt: 60 } }] },
+        { attendance: { $lt: 75 } }
+    ]
+});
+
+
+
+
+db.products.find({
+    category: "furniture",
+    $or: [
+        { price: { $lt: 200 } },
+        { stock: { $lt: 5 } }
+    ]
+});
+
+
+
+
+db.items.find({
+    type: { $in: ["software", "service"] },
+    price: { $lt: 100 }
+});
+
+
+
+db.employees.find({
+    experience: { $gt: 5 },
+    department: { $in: ["Engineering", "HR"] }
+});
+
+
+
+db.orders.find({
+    $or: [
+        { $and: [{ status: "urgent" }, { total_amount: { $gt: 1000 } }] },
+        { priority: "high" }
+    ]
+});
+
